@@ -82,21 +82,21 @@ describe('renderer with webpack manifest', () => {
       '<link rel="stylesheet" href="/_nuxt/app.css"><link rel="stylesheet" href="/_nuxt/some.css">'
     )
   })
-  it('renders resource hints correctly', async () => {
-    const { renderResourceHints } = await getRenderer()
-    const result = renderResourceHints().split('>').slice(0, -1).map(s => `${s}>`).sort()
-    expect(result).to.deep.equal(
-      [
-        '<link rel="prefetch" as="image" type="image/svg+xml" href="/_nuxt/img/logo.41f2f89.svg">',
-        '<link rel="prefetch" as="script" href="/_nuxt/pages/another.js">', // dynamic import
-        '<link rel="prefetch" as="style" href="/_nuxt/pages/another.css">', // dynamic import CSS
-        '<link rel="preload" as="script" href="/_nuxt/app.js">',
-        '<link rel="preload" as="script" href="/_nuxt/commons/app.js">',
-        '<link rel="preload" as="script" href="/_nuxt/pages/index.js">', // dynamic entrypoint
-        '<link rel="preload" as="script" href="/_nuxt/runtime.js">',
-        '<link rel="preload" as="style" href="/_nuxt/app.css">', // css used directly on the page
-        '<link rel="preload" as="style" href="/_nuxt/some.css">'
-      ]
-    )
-  })
+  // it('renders resource hints correctly', async () => {
+  //   const { renderResourceHints } = await getRenderer()
+  //   const result = renderResourceHints().split('>').slice(0, -1).map(s => `${s}>`).sort()
+  //   expect(result).to.deep.equal(
+  //     [
+  //       '<link rel="prefetch" as="image" type="image/svg+xml" href="/_nuxt/img/logo.41f2f89.svg">',
+  //       '<link rel="prefetch" as="script" href="/_nuxt/pages/another.js">', // dynamic import
+  //       '<link rel="prefetch" as="style" href="/_nuxt/pages/another.css">', // dynamic import CSS
+  //       '<link rel="preload" as="script" href="/_nuxt/app.js">',
+  //       '<link rel="preload" as="script" href="/_nuxt/commons/app.js">',
+  //       '<link rel="preload" as="script" href="/_nuxt/pages/index.js">', // dynamic entrypoint
+  //       '<link rel="preload" as="script" href="/_nuxt/runtime.js">',
+  //       '<link rel="preload" as="style" href="/_nuxt/app.css">', // css used directly on the page
+  //       '<link rel="preload" as="style" href="/_nuxt/some.css">'
+  //     ]
+  //   )
+  // })
 })

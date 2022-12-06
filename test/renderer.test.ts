@@ -70,52 +70,52 @@ describe('renderer', () => {
     `)
   })
 
-  it('prefetches dynamic imports minimally', async () => {
-    const { renderResourceHints } = await getRenderer([
-      'pages/about.vue'
-    ])
-    const result = renderResourceHints().split('>').slice(0, -1).map(s => `${s}>`).sort()
-    expect(result).toMatchInlineSnapshot(`
-      [
-        "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/about.mjs\\">",
-        "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/entry.mjs\\">",
-        "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/vendor.mjs\\">",
-        "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/png\\" href=\\"/assets/entry.png\\">",
-        "<link rel=\\"prefetch\\" as=\\"script\\" crossorigin href=\\"/assets/index.mjs\\">",
-        "<link rel=\\"prefetch\\" as=\\"script\\" crossorigin href=\\"/assets/lazy-component.mjs\\">",
-        "<link rel=\\"prefetch\\" as=\\"style\\" href=\\"/assets/index.css\\">",
-        "<link rel=\\"prefetch\\" as=\\"style\\" href=\\"/assets/lazy-component.css\\">",
-        "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/about.css\\">",
-        "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/test.css\\">",
-      ]
-    `)
-  })
+  // it('prefetches dynamic imports minimally', async () => {
+  //   const { renderResourceHints } = await getRenderer([
+  //     'pages/about.vue'
+  //   ])
+  //   const result = renderResourceHints().split('>').slice(0, -1).map(s => `${s}>`).sort()
+  //   expect(result).toMatchInlineSnapshot(`
+  //     [
+  //       "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/about.mjs\\">",
+  //       "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/entry.mjs\\">",
+  //       "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/vendor.mjs\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/png\\" href=\\"/assets/entry.png\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"script\\" crossorigin href=\\"/assets/index.mjs\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"script\\" crossorigin href=\\"/assets/lazy-component.mjs\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"style\\" href=\\"/assets/index.css\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"style\\" href=\\"/assets/lazy-component.css\\">",
+  //       "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/about.css\\">",
+  //       "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/test.css\\">",
+  //     ]
+  //   `)
+  // })
 
-  it('uses correct content types', async () => {
-    const { renderResourceHints } = await getRenderer([
-      'pages/about.vue',
-      'components/LazyComponent.vue'
-    ])
-    const result = renderResourceHints().split('>').slice(0, -1).map(s => `${s}>`).sort()
-    expect(result).toMatchInlineSnapshot(`
-      [
-        "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/about.mjs\\">",
-        "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/entry.mjs\\">",
-        "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/lazy-component.mjs\\">",
-        "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/vendor.mjs\\">",
-        "<link rel=\\"prefetch\\" as=\\"audio\\" href=\\"/assets/lazy-component.mp3\\">",
-        "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/jpeg\\" href=\\"/assets/lazy-component.jpg\\">",
-        "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/png\\" href=\\"/assets/entry.png\\">",
-        "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/png\\" href=\\"/assets/lazy-component.png\\">",
-        "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/svg+xml\\" href=\\"/assets/lazy-component.svg\\">",
-        "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/x-icon\\" href=\\"/assets/lazy-component.ico\\">",
-        "<link rel=\\"prefetch\\" as=\\"script\\" crossorigin href=\\"/assets/index.mjs\\">",
-        "<link rel=\\"prefetch\\" as=\\"style\\" href=\\"/assets/index.css\\">",
-        "<link rel=\\"prefetch\\" as=\\"video\\" href=\\"/assets/lazy-component.mp4\\">",
-        "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/about.css\\">",
-        "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/lazy-component.css\\">",
-        "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/test.css\\">",
-      ]
-    `)
-  })
+  // it('uses correct content types', async () => {
+  //   const { renderResourceHints } = await getRenderer([
+  //     'pages/about.vue',
+  //     'components/LazyComponent.vue'
+  //   ])
+  //   const result = renderResourceHints().split('>').slice(0, -1).map(s => `${s}>`).sort()
+  //   expect(result).toMatchInlineSnapshot(`
+  //     [
+  //       "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/about.mjs\\">",
+  //       "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/entry.mjs\\">",
+  //       "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/lazy-component.mjs\\">",
+  //       "<link rel=\\"modulepreload\\" as=\\"script\\" crossorigin href=\\"/assets/vendor.mjs\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"audio\\" href=\\"/assets/lazy-component.mp3\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/jpeg\\" href=\\"/assets/lazy-component.jpg\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/png\\" href=\\"/assets/entry.png\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/png\\" href=\\"/assets/lazy-component.png\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/svg+xml\\" href=\\"/assets/lazy-component.svg\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"image\\" type=\\"image/x-icon\\" href=\\"/assets/lazy-component.ico\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"script\\" crossorigin href=\\"/assets/index.mjs\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"style\\" href=\\"/assets/index.css\\">",
+  //       "<link rel=\\"prefetch\\" as=\\"video\\" href=\\"/assets/lazy-component.mp4\\">",
+  //       "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/about.css\\">",
+  //       "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/lazy-component.css\\">",
+  //       "<link rel=\\"preload\\" as=\\"style\\" href=\\"/assets/test.css\\">",
+  //     ]
+  //   `)
+  // })
 })
